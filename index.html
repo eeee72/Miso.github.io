@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Misofonía</title>
+<style>
+        
+        body {
+            margin: 0;
+            overflow: hidden;  
+            position: relative;
+            background-color: #f5cb25e9;
+        }
+
+        
+        .image {
+            position: absolute;
+            width: randomWidth;  
+            height: randomHeight;
+            object-fit: cover;  
+        }
+        #imagen11 {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+    </head>
+<body>
+ 
+    <img src="crisps1.jpg" class="image" alt="imagen1" id="imagen1" >
+    <img src="crisps2.jpg" class="image" alt="imagen2" id="imagen2" >
+    <img src="crisps3.jpg" class="image" alt="imagen3" id="imagen3" >
+    <img src="e.jpg" class="image" alt="imagen4" id="imagen4" >
+    <img src="e2.jpg" class="image" alt="imagen5" id="imagen5" >
+    <img src="e3.jpg" class="image" alt="imagen6"id="imagen6" >
+    <img src="e4.jpg" class="image" alt="imagen7"id="imagen7" >
+    <img src="e5.jpg" class="image" alt="imagen8"id="imagen8" >
+    <img src="e6.jpg" class="image" alt="imagen9"id="imagen9" >
+    <img src="e7.jpg" class="image" alt="imagen10"id="imagen10" >
+    <img src="e8.jpg" class="image" alt="imagen17"id="imagen17" >
+    <img src="e9.jpg" class="image" alt="imagen12"id="imagen12" >
+    <img src="e10.jpg" class="image" alt="imagen13"id="imagen13" >
+    <img src="e11.jpg" class="image" alt="imagen14"id="imagen14" >
+    <img src="e12.jpg" class="image" alt="imagen15"id="imagen15" >
+    <img src="e1.jpg" class="image" alt="imagen16"id="imagen16" >
+   
+    <img src="b.jpg" class="image" alt="imagen11"id="imagen11" >
+
+    <audio id="audio1" src="crisps1.m4a"></audio>
+    <audio id="audio2" src="yoghurt.m4a"></audio>
+    <audio id="audio3" src="tuna1.m4a"></audio>
+    <audio id="audio4" src="crisps2.m4a"></audio>
+    <audio id="audio5" src="crisps3.m4a"></audio>
+    <audio id="audio6" src="curry1.m4a"></audio>
+    <audio id="audio7" src="e1.mp4"></audio>
+    <audio id="audio8" src="e2.mp4"></audio>
+    <audio id="audio9" src="e3.mp4"></audio>
+    <audio id="audio10" src="e4.mp4"></audio>
+    <audio id="audio11" src="e5.mp4"></audio>
+    <audio id="audio12" src="e4.mp4"></audio>
+   
+    <audio id="audio13" src="m.mp4"></audio>
+
+    <script>
+        function checkOverlap(newX, newY, width, height, images) {
+            for (let i = 0; i < images.length; i++) {
+                const image = images[i];
+                const imageX = image.x;
+                const imageY = image.y;
+                const imageWidth = image.width;
+                const imageHeight = image.height;
+                
+                
+                if (newX < imageX + imageWidth &&
+                    newX + width > imageX &&
+                    newY < imageY + imageHeight &&
+                    newY + height > imageY) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        
+        function getRandomPosition(images, width, height) {
+            let x, y;
+            let attempts = 0;
+
+            do {
+                x = Math.floor(Math.random() * (window.innerWidth - width));  
+                y = Math.floor(Math.random() * (window.innerHeight - height)); 
+                attempts++;
+
+                
+                if (attempts > 100) break;
+            } while (checkOverlap(x, y, width, height, images));  
+
+            return { x, y };
+        }
+
+        window.onload = function() {
+            const images = document.querySelectorAll('.image');
+            let positionedImages = [];
+
+            images.forEach(image => {
+                const randomWidth = Math.floor(Math.random() * 300) + 200;  
+                const randomHeight = Math.floor(Math.random() * 300) + 100;  
+                
+                const { x, y } = getRandomPosition(positionedImages, randomWidth, randomHeight);
+
+                image.style.left = `${x}px`;
+                image.style.top = `${y}px`;
+                image.style.width = `${randomWidth}px`;
+                image.style.height = `${randomHeight}px`;
+
+                positionedImages.push({ x, y, width: randomWidth, height: randomHeight });
+            });
+            const imagen11 = document.getElementById('imagen11');
+            imagen11.style.width = '20px';
+            imagen11.style.height = '20px';
+        };
+        
+    </script>
+ <script>
+       
+        var imagen1 = document.getElementById('imagen1');
+        var imagen2 = document.getElementById('imagen2');
+        var imagen3 = document.getElementById('imagen3');
+        var imagen4 = document.getElementById('imagen4');
+        var imagen5 = document.getElementById('imagen5');
+        var imagen6 = document.getElementById('imagen6');
+        var imagen7 = document.getElementById('imagen7');
+        var imagen8 = document.getElementById('imagen8');
+        var imagen9 = document.getElementById('imagen9');
+        var imagen10 = document.getElementById('imagen10');
+        var imagen11 = document.getElementById('imagen11');
+        var imagen12 = document.getElementById('imagen12');
+        var imagen13 = document.getElementById('imagen13');
+        var imagen14 = document.getElementById('imagen14');
+        var imagen15 = document.getElementById('imagen15');
+        var imagen16 = document.getElementById('imagen16');
+
+        var audio1 = document.getElementById('audio1');
+        var audio2 = document.getElementById('audio2');
+        var audio3 = document.getElementById('audio3');
+        var audio4 = document.getElementById('audio4');
+        var audio5 = document.getElementById('audio5');
+        var audio6 = document.getElementById('audio6');
+        var audio7 = document.getElementById('audio7');
+        var audio8 = document.getElementById('audio8');
+        var audio9 = document.getElementById('audio9');
+        var audio10 = document.getElementById('audio10');
+        var audio11 = document.getElementById('audio11');
+        var audio12 = document.getElementById('audio12');
+        var audio13 = document.getElementById('audio13');
+
+        function playSound(audio) {
+            audio.play();
+        }
+        function stopSound(audio) {
+            audio.pause();
+            audio.currentTime = 0;  
+        }
+        imagen1.addEventListener('mouseover', function() {
+            playSound(audio1);
+            stopSound(audio13);
+        });
+        imagen2.addEventListener('mouseover', function() {
+            playSound(audio2);
+            stopSound(audio13);
+        });
+        imagen3.addEventListener('mouseover', function() {
+            playSound(audio3);
+            stopSound(audio13);
+        });
+        imagen4.addEventListener('mouseover', function() {
+            playSound(audio4);
+            stopSound(audio13);
+        });
+        imagen5.addEventListener('mouseover', function() {
+            playSound(audio5);
+            stopSound(audio13);
+        });
+        imagen6.addEventListener('mouseover', function() {
+            playSound(audio6);
+            stopSound(audio13);
+        });
+        imagen7.addEventListener('mouseover', function() {
+            playSound(audio7);
+            stopSound(audio13);
+        });
+        imagen8.addEventListener('mouseover', function() {
+            playSound(audio8);
+            stopSound(audio13);
+        });
+        imagen9.addEventListener('mouseover', function() {
+            playSound(audio9);
+            stopSound(audio13);
+        });
+        imagen10.addEventListener('mouseover', function() {
+            playSound(audio10);
+            stopSound(audio13);
+        });
+        imagen12.addEventListener('mouseover', function() {
+            playSound(audio11);
+            stopSound(audio13);
+        });
+        imagen13.addEventListener('mouseover', function() {
+            playSound(audio12);
+            stopSound(audio13);
+        });
+        imagen14.addEventListener('mouseover', function() {
+            playSound(audio9);
+            stopSound(audio13);
+        });
+        imagen15.addEventListener('mouseover', function() {
+            playSound(audio8);
+            stopSound(audio13);
+        });
+        imagen16.addEventListener('mouseover', function() {
+            playSound(audio10);
+            stopSound(audio13);
+        });
+        imagen11.addEventListener('mouseover', function() {
+            playSound(audio13);
+            stopSound(audio1);
+            stopSound(audio2);
+            stopSound(audio3);
+            stopSound(audio4);
+            stopSound(audio5);
+            stopSound(audio6);
+            stopSound(audio7);
+            stopSound(audio8);
+            stopSound(audio9);
+            stopSound(audio10);
+            stopSound(audio11);
+            stopSound(audio12);
+        });
+    </script>
+</body>
+</html>
